@@ -29,7 +29,7 @@ const loadRecipe = (data, setRecipesList, recipesList, startIndex, setStartIndex
   const filter = []
   var i = startIndex
   while (true) {
-    if (quantity <= 0) break
+    if (quantity <= 0 || i >= data.length) break
     if (season == 'unknown') {
       quantity--
       filter.push(data[i])
@@ -174,7 +174,6 @@ function App() {
     }
     fetchData()
   }, [])
-  console.log(data)
 
   return loading ? (  
     <div id="Container">
