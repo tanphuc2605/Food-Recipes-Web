@@ -10,10 +10,13 @@ with open('data/raw/test.json', 'r') as file:
 
 # Common words to remove for standardization
 remove_words = [
-    'fresh', 'ground', 'chopped', 'dried', 'sliced', 'minced', 'grated',
+    'freshly', 'ground', 'chopped', 'dried', 'sliced', 'minced', 'grated',
     'finely', 'coarse', 'large', 'small', 'reduced', 'fat', 'free', 'low',
     'sodium', 'unsalted', 'cooked', 'roasted', 'toasted', 'raw', 'lean',
-    'extra', 'virgin', 'light', 'whole', 'boneless', 'skinless', 'halves'
+    'extra', 'virgin', 'light', 'whole', 'boneless', 'skinless', 'halves',
+    'pieces', 'cubed', 'shredded', 'thinly', 'thickly', 'medium', 'large',
+    'baby', 'ripe', 'firm', 'sweet', 'bitter', 'spicy', 'hot', 'cold', 'fresh',
+    'frozen', 'canned', 'jarred', 'bottled', 'packaged', 'diced', 'pureed',' '
 ]
 
 def clean_ingredient(ingredient):
@@ -48,7 +51,10 @@ def clean_ingredient(ingredient):
         'mozzarella cheese': 'mozzarella',
         'cheddar cheese': 'cheddar',
         'olive oil': 'oliveoil',
-        'vegetable oil': 'vegetableoil'
+        'vegetable oil': 'vegetableoil',
+        'cream cheese': 'creamcheese',
+        'cooking oil': 'cookingoil',
+        'baking powder': 'bakingpowder',
     }
 
     return ingredient_map.get(cleaned_name, cleaned_name)

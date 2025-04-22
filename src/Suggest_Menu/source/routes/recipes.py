@@ -40,14 +40,14 @@ def search_recipes():
     
     # Find exact matches
     matching_recipes = [
-        recipe for recipe in recipes
+        recipe for recipe in season_recipes
         if all(ing in recipe['ingredients'] for ing in input_ingredients)
     ]
     
     if matching_recipes:
         selected_recipe = matching_recipes[0]
         alternatives = [
-            r for r in recipes
+            r for r in season_recipes
             if r['id'] != selected_recipe['id']
         ]
         return jsonify({
@@ -55,7 +55,7 @@ def search_recipes():
         })
 # No exact match, find partial matches with replacements
     partial_matches = []
-    for recipe in recipes:
+    for recipe in season_recipes:
         matched = set(input_ingredients) & set(recipe["ingredients"])
         missing = set(recipe["ingredients"]) - set(input_ingredients)
 

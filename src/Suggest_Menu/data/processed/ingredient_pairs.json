@@ -4,7 +4,14 @@
       "pepper",
       "salt"
     ],
-    "count": 2104
+    "count": 2255
+  },
+  {
+    "pair": [
+      "garlic",
+      "onion"
+    ],
+    "count": 2123
   },
   {
     "pair": [
@@ -15,31 +22,24 @@
   },
   {
     "pair": [
-      "garlic",
-      "onion"
-    ],
-    "count": 2039
-  },
-  {
-    "pair": [
       "onion",
       "salt"
     ],
-    "count": 1848
+    "count": 1921
   },
   {
     "pair": [
       "garlic",
       "pepper"
     ],
-    "count": 1638
+    "count": 1761
   },
   {
     "pair": [
       "onion",
       "pepper"
     ],
-    "count": 1473
+    "count": 1631
   },
   {
     "pair": [
@@ -57,10 +57,24 @@
   },
   {
     "pair": [
+      "salt",
+      "water"
+    ],
+    "count": 1089
+  },
+  {
+    "pair": [
       "oliveoil",
       "salt"
     ],
     "count": 1074
+  },
+  {
+    "pair": [
+      "oliveoil",
+      "onion"
+    ],
+    "count": 1047
   },
   {
     "pair": [
@@ -71,24 +85,17 @@
   },
   {
     "pair": [
-      "salt",
-      "water"
-    ],
-    "count": 1002
-  },
-  {
-    "pair": [
       "oliveoil",
-      "onion"
+      "pepper"
     ],
-    "count": 999
+    "count": 962
   },
   {
     "pair": [
       "egg",
       "salt"
     ],
-    "count": 939
+    "count": 941
   },
   {
     "pair": [
@@ -99,17 +106,24 @@
   },
   {
     "pair": [
-      "oliveoil",
-      "pepper"
-    ],
-    "count": 891
-  },
-  {
-    "pair": [
       "garlic",
       "water"
     ],
-    "count": 850
+    "count": 921
+  },
+  {
+    "pair": [
+      "onion",
+      "tomato"
+    ],
+    "count": 915
+  },
+  {
+    "pair": [
+      "onion",
+      "water"
+    ],
+    "count": 821
   },
   {
     "pair": [
@@ -120,6 +134,13 @@
   },
   {
     "pair": [
+      "garlic",
+      "tomato"
+    ],
+    "count": 772
+  },
+  {
+    "pair": [
       "butter",
       "flour"
     ],
@@ -127,17 +148,17 @@
   },
   {
     "pair": [
-      "onion",
-      "water"
+      "salt",
+      "tomato"
     ],
-    "count": 731
+    "count": 702
   },
   {
     "pair": [
       "egg",
       "flour"
     ],
-    "count": 660
+    "count": 661
   },
   {
     "pair": [
@@ -148,17 +169,45 @@
   },
   {
     "pair": [
+      "butter",
+      "pepper"
+    ],
+    "count": 633
+  },
+  {
+    "pair": [
       "garlic",
       "soy sauce"
     ],
-    "count": 630
+    "count": 632
   },
   {
     "pair": [
       "cilantro",
       "onion"
     ],
-    "count": 610
+    "count": 632
+  },
+  {
+    "pair": [
+      "bell pepper",
+      "onion"
+    ],
+    "count": 624
+  },
+  {
+    "pair": [
+      "pepper",
+      "water"
+    ],
+    "count": 617
+  },
+  {
+    "pair": [
+      "cumin",
+      "onion"
+    ],
+    "count": 612
   },
   {
     "pair": [
@@ -176,31 +225,10 @@
   },
   {
     "pair": [
-      "cumin",
-      "onion"
-    ],
-    "count": 585
-  },
-  {
-    "pair": [
       "salt",
       "scallion"
     ],
     "count": 582
-  },
-  {
-    "pair": [
-      "bell pepper",
-      "onion"
-    ],
-    "count": 582
-  },
-  {
-    "pair": [
-      "butter",
-      "pepper"
-    ],
-    "count": 571
   },
   {
     "pair": [
@@ -225,6 +253,20 @@
   },
   {
     "pair": [
+      "butter",
+      "onion"
+    ],
+    "count": 550
+  },
+  {
+    "pair": [
+      "egg",
+      "sugar"
+    ],
+    "count": 549
+  },
+  {
+    "pair": [
       "garlic",
       "vegetableoil"
     ],
@@ -239,24 +281,10 @@
   },
   {
     "pair": [
-      "egg",
-      "sugar"
-    ],
-    "count": 547
-  },
-  {
-    "pair": [
-      "onion",
+      "pepper",
       "tomato"
     ],
-    "count": 546
-  },
-  {
-    "pair": [
-      "pepper",
-      "water"
-    ],
-    "count": 543
+    "count": 542
   },
   {
     "pair": [
@@ -281,10 +309,10 @@
   },
   {
     "pair": [
-      "butter",
-      "onion"
+      "scallion",
+      "soy sauce"
     ],
-    "count": 521
+    "count": 520
   },
   {
     "pair": [
@@ -295,10 +323,17 @@
   },
   {
     "pair": [
-      "scallion",
-      "soy sauce"
+      "sugar",
+      "water"
     ],
-    "count": 518
+    "count": 519
+  },
+  {
+    "pair": [
+      "onion",
+      "vegetableoil"
+    ],
+    "count": 502
   },
   {
     "pair": [
@@ -309,44 +344,9 @@
   },
   {
     "pair": [
-      "milk",
-      "salt"
+      "flour",
+      "pepper"
     ],
-    "count": 486
-  },
-  {
-    "pair": [
-      "onion",
-      "vegetableoil"
-    ],
-    "count": 485
-  },
-  {
-    "pair": [
-      "garlic",
-      "tomato"
-    ],
-    "count": 476
-  },
-  {
-    "pair": [
-      "salt",
-      "tomato"
-    ],
-    "count": 467
-  },
-  {
-    "pair": [
-      "chicken stock",
-      "garlic"
-    ],
-    "count": 466
-  },
-  {
-    "pair": [
-      "sugar",
-      "water"
-    ],
-    "count": 464
+    "count": 500
   }
 ]
