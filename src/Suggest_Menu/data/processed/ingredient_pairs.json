@@ -44,7 +44,7 @@
   {
     "pair": [
       "garlic",
-      "olive oil"
+      "oliveoil"
     ],
     "count": 1234
   },
@@ -57,7 +57,7 @@
   },
   {
     "pair": [
-      "olive oil",
+      "oliveoil",
       "salt"
     ],
     "count": 1074
@@ -78,7 +78,7 @@
   },
   {
     "pair": [
-      "olive oil",
+      "oliveoil",
       "onion"
     ],
     "count": 999
@@ -99,7 +99,7 @@
   },
   {
     "pair": [
-      "olive oil",
+      "oliveoil",
       "pepper"
     ],
     "count": 891
@@ -212,7 +212,7 @@
   {
     "pair": [
       "salt",
-      "vegetable oil"
+      "vegetableoil"
     ],
     "count": 562
   },
@@ -226,7 +226,7 @@
   {
     "pair": [
       "garlic",
-      "vegetable oil"
+      "vegetableoil"
     ],
     "count": 549
   },
@@ -317,7 +317,7 @@
   {
     "pair": [
       "onion",
-      "vegetable oil"
+      "vegetableoil"
     ],
     "count": 485
   },

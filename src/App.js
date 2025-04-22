@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // ==================================================
-// GET data from server
-var getUrl = 'http://localhost:5000/season-recipes'
-var postUrl = 'http://localhost:5000/recipes/search'
 
-var data = await fetch(getUrl)
-  .then((response) => {
-    return response.json()
-  })
-  .catch((err) => {
-    console.log(err)
-  })
 
 // ==================================================
 // UI Components
@@ -20,9 +10,9 @@ function LineBreak() {
   return <div className="line-break"></div>
 }
 
-function Ingredients(props) {
+function Ingredients({ data, id }) {
   let recipe = data.find((obj) => {
-    if (obj.id == props.id) {
+    if (obj.id == id) {
       return obj;
     }
   })
@@ -34,7 +24,7 @@ function Ingredients(props) {
   )
 }
 
-const loadRecipe = (setRecipesList, recipesList, startIndex, setStartIndex, quantity, season = 'unknown', type = 'add') => {
+const loadRecipe = (data, setRecipesList, recipesList, startIndex, setStartIndex, quantity, season = 'unknown', type = 'add') => {
   
   const filter = []
   var i = startIndex
@@ -59,7 +49,7 @@ const loadRecipe = (setRecipesList, recipesList, startIndex, setStartIndex, quan
         <p style={{ opacity: 0.5, marginTop: 7 }}>Cuisine: {obj.cuisine}</p>
         <p>Season: {obj.season}</p>
         <LineBreak />
-        <Ingredients id={obj.id} />
+        <Ingredients data = {data} id={obj.id} />
       </div>
   ))
   if (type == 'new') {
@@ -69,15 +59,15 @@ const loadRecipe = (setRecipesList, recipesList, startIndex, setStartIndex, quan
   }
 }
 
-function SeasonsCheckbox({setRecipesList, setStartIndex, seasons}) {
+function SeasonsCheckbox({ data, setRecipesList, setStartIndex, seasons}) {
   const [checked, setCheck] = useState()
   function checkedChange(season, setStartIndex) {
     setCheck(season)
-    loadRecipe(setRecipesList, '', 0, setStartIndex, 21, season, 'new')
+    loadRecipe(data, setRecipesList, '', 0, setStartIndex, 21, season, 'new')
   }
   useEffect(() => {
     setCheck('unknown')
-    loadRecipe(setRecipesList, '', 0, setStartIndex, 21, 'unknown', 'new')
+    loadRecipe(data, setRecipesList, '', 0, setStartIndex, 21, 'unknown', 'new')
   }, [])
   return (
     <div>
@@ -93,20 +83,26 @@ function SeasonsCheckbox({setRecipesList, setStartIndex, seasons}) {
   )
 }
 
-function LoadMoreRecipes({ setRecipesList, recipesList, startIndex, setStartIndex }) {
-  var radios = document.getElementsByClassName('season-picking')
+function getSeason() {
   var season = ''
-  const loadRecipes = () => {
-    for (var radio of radios) {
-      if (radio.checked) {
-        season = radio.parentElement.textContent
-        if (season == 'all') {
-          season = 'unknown'
-        }
-        break
+  var radios = document.getElementsByClassName('season-picking')
+  for (var radio of radios) {
+    if (radio.checked) {
+      season = radio.parentElement.textContent
+      if (season == 'all') {
+        season = 'unknown'
       }
+      break
     }
-    loadRecipe(setRecipesList, recipesList, startIndex, setStartIndex, 21, season, 'add')
+  }
+  return season
+}
+
+function LoadMoreRecipes({ data, setRecipesList, recipesList, startIndex, setStartIndex }) {
+  
+  var season = getSeason()
+  const loadRecipes = () => {
+    loadRecipe(data, setRecipesList, recipesList, startIndex, setStartIndex, 21, season, 'add')
   }
 
   return (
@@ -116,26 +112,32 @@ function LoadMoreRecipes({ setRecipesList, recipesList, startIndex, setStartInde
   )
 }
 
-function Search() {
+function Search({ data, setData, postUrl, setRecipesList, setStartIndex }) {
   
-  function handleSubmit() {
+  async function handleSubmit() {
     var searchValue = document.getElementById('input').value
     var ingredients = searchValue.split(' ')
-      
-    const post = {
-        ingredients
-    }
     
-    fetch(postUrl,
-      {
-        method: "POST",
-        body: JSON.stringify(post),
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+    if (searchValue) {
+      const post = {
+          ingredients
+      }
+  
+      var season = getSeason()
+      var dataToSet = await fetch(postUrl,
+        {
+          method: "POST",
+          body: JSON.stringify(post),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .catch(err => console.log(err))
+      setData(dataToSet.matching)
+      
+      loadRecipe(dataToSet.matching, setRecipesList, '', 0, setStartIndex, 21, season, 'new')
+    }
   }
 
   return (
@@ -148,24 +150,54 @@ function Search() {
 
 
 function App() {
+  const [loading, setLoading] = useState(false)
   const [recipes, setRecipesList] = useState([])
+  const [data, setData] = useState([])
   const [startIndex, setStartIndex] = useState(0)
   const seasons = ['unknown', 'autumn', 'winter', 'summer', 'spring']
 
-  return (  
+  // GET data from server
+  var getUrl = 'http://localhost:5000/season-recipes'
+  var postUrl = 'http://localhost:5000/recipes/search'
+
+  useEffect(() => {
+    async function fetchData() {
+      var data = await fetch(getUrl)
+      .then((response) => {
+        return response.json()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      setData(data)
+      setLoading(true)
+    }
+    fetchData()
+  }, [])
+  console.log(data)
+
+  return loading ? (  
     <div id="Container">
       <h1>Công thức món ăn</h1>
-      <Search />
+      <Search 
+        data = {data}
+        setData = {setData}
+        postUrl = {postUrl}
+        setRecipesList = {setRecipesList}
+        setStartIndex = {setStartIndex}
+      />
       <LineBreak />
       <SeasonsCheckbox 
+        data = {data}
         setRecipesList = {setRecipesList}
-        startIndex = {startIndex}
         setStartIndex = {setStartIndex}
-        seasons = {seasons}/>
+        seasons = {seasons}
+      />
       <LineBreak />
       <div id="recipe-container">
         {recipes}
         <LoadMoreRecipes
+          data = {data}
           setRecipesList = {setRecipesList}
           recipesList = {recipes}
           startIndex = {startIndex}
@@ -173,7 +205,7 @@ function App() {
         />
       </div>
     </div>
-  )
+  ) : (<div>Loading</div>)
 }
 
 export default App;

@@ -9,7 +9,7 @@ def load_data():
     pairs_path = os.path.join(project_root, 'data', 'processed', 'ingredient_pairs.json')
     clustered_path = os.path.join(project_root, 'data', 'processed', 'clustered_recipes.json')
     season_path = os.path.join(project_root, 'data', 'processed', 'season_recipes.json')
-
+    ingredient_subs_path = os.path.join(project_root, 'data', 'processed', 'ingredient_subs.json')
     with open(data_path, 'r', encoding='utf-8') as file:
         recipes = json.load(file)
 
@@ -22,5 +22,7 @@ def load_data():
     with open(season_path, 'r', encoding='utf-8') as file:
         season_recipes = json.load(file)     
         
+    with open(ingredient_subs_path, 'r', encoding='utf-8') as file:
+        ingredient_subs = json.load(file) 
           
-    return recipes, ingredient_pairs, clustered_recipes,season_recipes
+    return recipes, ingredient_pairs, clustered_recipes,season_recipes,ingredient_subs

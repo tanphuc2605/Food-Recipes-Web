@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 
 # Load cleaned recipes
-with open('data/processed/tagged_recipes.json', 'r') as file:
+with open('data/processed/season_recipes.json', 'r') as file:
     recipes = json.load(file)
 
 # Get all unique ingredients

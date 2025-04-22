@@ -4,7 +4,7 @@ from source.utils.data_loader import load_data
 bp = Blueprint('recipes', __name__)
 
 # Load data
-recipes, ingredient_pairs, clustered_recipes, season_recipes = load_data()
+recipes, ingredient_pairs, clustered_recipes, season_recipes,ingredient_subs = load_data()
 
 @bp.route('/recipes', methods=['GET'])
 def get_recipes():
@@ -46,33 +46,45 @@ def search_recipes():
     
     if matching_recipes:
         selected_recipe = matching_recipes[0]
-        cluster = selected_recipe['cluster']
         alternatives = [
             r for r in recipes
-            if r['cluster'] == cluster and r['id'] != selected_recipe['id']
-        ][:3]
+            if r['id'] != selected_recipe['id']
+        ]
         return jsonify({
-            'selected': selected_recipe,
-            'alternatives': alternatives
+            'matching': matching_recipes,
         })
-    
-    # No exact match, return partial matches
-    partial_matches = [
-        {
+# No exact match, find partial matches with replacements
+    partial_matches = []
+    for recipe in recipes:
+        matched = set(input_ingredients) & set(recipe["ingredients"])
+        missing = set(recipe["ingredients"]) - set(input_ingredients)
+
+        # Tìm nguyên liệu thay thế
+        replacements = {}
+        if ingredient_subs:
+            for miss in missing:
+                if miss in ingredient_subs:
+                    for sub in ingredient_subs[miss]:
+                        if sub in input_ingredients:
+                            replacements[miss] = sub
+                            break
+                        
+        partial_matches.append({
             **recipe,
-            'match_count': sum(1 for ing in input_ingredients if ing in recipe['ingredients'])
-        }
-        for recipe in recipes
-    ]
-    partial_matches = [
-        r for r in partial_matches if r['match_count'] > 0
-    ]
-    partial_matches.sort(key=lambda x: x['match_count'], reverse=True)
+            'match_count': len(matched),
+            'missing_count': len(missing),
+            'possible_replacements': replacements
+        })
+
+    partial_matches = [r for r in partial_matches if r['match_count'] > 0]
+    partial_matches.sort(key=lambda x:(-x["match_count"], x["missing_count"]))
+
     return jsonify({
-        'selected': None,
+        'matching': None,
         'alternatives': [
-            {k: v for k, v in r.items() if k != 'match_count'}
-            for r in partial_matches[:3]
+            {
+                k: v for k, v in r.items() if k != 'match_count' and k != 'missing_count'
+            } for r in partial_matches[:3]
         ]
     })
 

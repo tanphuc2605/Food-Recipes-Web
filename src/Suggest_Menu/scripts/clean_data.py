@@ -46,7 +46,9 @@ def clean_ingredient(ingredient):
         'cilantro fresh': 'cilantro',
         'parmesan cheese': 'parmesan',
         'mozzarella cheese': 'mozzarella',
-        'cheddar cheese': 'cheddar'
+        'cheddar cheese': 'cheddar',
+        'olive oil': 'oliveoil',
+        'vegetable oil': 'vegetableoil'
     }
 
     return ingredient_map.get(cleaned_name, cleaned_name)
