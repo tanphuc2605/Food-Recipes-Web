@@ -78,7 +78,6 @@ def search_recipes():
 
     partial_matches = [r for r in partial_matches if r['match_count'] > 0]
     partial_matches.sort(key=lambda x:(-x["match_count"], x["missing_count"]))
-
     return jsonify({
         'matching': [
             {
