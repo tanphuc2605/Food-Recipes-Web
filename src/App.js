@@ -10,16 +10,32 @@ function LineBreak() {
   return <div className="line-break"></div>
 }
 
-function Ingredients({ data, id }) {
-  let recipe = data.find((obj) => {
-    if (obj.id == id) {
-      return obj;
-    }
-  })
+function Ingredients({ recipe }) {
+  var replace = []
+  if (recipe.possible_replacements) {
+    replace = Object.keys(recipe.possible_replacements)
+  }
   return (
     <ul className="list">
       Ingredients:
-      {recipe.ingredients.map((ingre) => <li key={ingre}>{ingre}</li>)}
+      {recipe.ingredients.map((ingre) => {
+        if (recipe.possible_replacements) {
+          if (recipe.possible_replacements[ingre]) {
+            console.log(ingre, recipe.possible_replacements)
+            return <li key={ingre}>{ingre} ({recipe.possible_replacements[ingre]})</li>
+          }
+          else return <li key={ingre}>{ingre}</li>
+        }
+        // if (replace.includes(ingre)) {
+        //   for (var replacement in recipe.possible_replacements) {
+        //       console.log(recipe.possible_replacements)
+        //       return <li key={ingre}>{ingre} ({recipe.possible_replacements[replacement]})</li>
+        //     }
+        //   }
+        //   else {
+        //   return <li key={ingre}>{ingre}</li>
+        // }
+      })}
     </ul>
   )
 }
@@ -49,7 +65,7 @@ const loadRecipe = (data, setRecipesList, recipesList, startIndex, setStartIndex
         <p style={{ opacity: 0.5, marginTop: 7 }}>Cuisine: {obj.cuisine}</p>
         <p>Season: {obj.season}</p>
         <LineBreak />
-        <Ingredients data = {data} id={obj.id} />
+        <Ingredients recipe = {obj} />
       </div>
   ))
   if (type == 'new') {
@@ -135,7 +151,7 @@ function Search({ data, setData, postUrl, setRecipesList, setStartIndex }) {
           .then((response) => response.json())
           .catch(err => console.log(err))
       setData(dataToSet.matching)
-      
+      console.log(dataToSet)
       loadRecipe(dataToSet.matching, setRecipesList, '', 0, setStartIndex, 21, season, 'new')
     }
   }

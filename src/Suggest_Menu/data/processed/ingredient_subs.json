@@ -18,7 +18,7 @@
   "chili powder": ["cayenne pepper", "paprika"],
   "paprika": ["smoked paprika", "cayenne pepper", "chili powder"],
   "soy sauce": ["tamari", "coconut aminos"],
-  "baking powder": ["baking soda", "yeast"],
+  "bakingpowder": ["baking soda", "yeast"],
   "baking soda": ["baking powder", "yeast"],
   "cinnamon": ["nutmeg", "allspice"]
 }
