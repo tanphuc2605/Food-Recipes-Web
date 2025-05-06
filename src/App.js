@@ -25,16 +25,9 @@ function Ingredients({ recipe }) {
             return <li key={ingre}>{ingre} ({recipe.possible_replacements[ingre]})</li>
           }
           else return <li key={ingre}>{ingre}</li>
+        } else {
+          return <li key={ingre}>{ingre}</li>
         }
-        // if (replace.includes(ingre)) {
-        //   for (var replacement in recipe.possible_replacements) {
-        //       console.log(recipe.possible_replacements)
-        //       return <li key={ingre}>{ingre} ({recipe.possible_replacements[replacement]})</li>
-        //     }
-        //   }
-        //   else {
-        //   return <li key={ingre}>{ingre}</li>
-        // }
       })}
     </ul>
   )
